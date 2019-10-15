@@ -94,6 +94,10 @@ function test_swiftpm_docker {
     run docker run -it --privileged=true nimble-tests
 }
 
+function test_carthage {
+    run set -o pipefail && carthage archive
+}
+
 function test() {
     test_ios
     test_tvos
@@ -129,6 +133,7 @@ function help {
     echo " podspec         - Runs pod lib lint against the podspec to detect breaking changes"
     echo " swiftpm         - Runs the tests built by the Swift Package Manager"
     echo " swiftpm_docker  - Runs the tests built by the Swift Package Manager in a docker linux container"
+    echo " carthage        - Builds the project using Carthage"
     echo
     exit 1
 }
@@ -147,6 +152,7 @@ function main {
             all) test ;;
             swiftpm) test_swiftpm ;;
             swiftpm_docker) test_swiftpm_docker ;;
+            carthage) test_carthage ;;
             help) help ;;
         esac
     done
