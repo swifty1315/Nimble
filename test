@@ -95,7 +95,7 @@ function test_swiftpm_docker {
 }
 
 function test_carthage {
-    run set -o pipefail && carthage archive
+    run set -o pipefail && carthage build --archive --platform iOS,macOS,tvOS
 }
 
 function test() {
